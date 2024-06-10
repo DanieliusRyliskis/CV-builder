@@ -1,0 +1,101 @@
+:root {
+  font-size: 62.5%;
+  --fs-h1: clamp(2.4rem, 2.24rem + 0.8vw, 3.2rem);
+  --fs-h2: clamp(1.8rem, 1.6rem + 1vw, 2.8rem);
+  --fs-h3: clamp(1.4rem, 1.28rem + 0.6vw, 2rem);
+}
+/* ===========================================Text=========================================== */
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #ededed;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-weight: bold;
+}
+h1 > span {
+  color: #ffaf01;
+}
+header > button {
+  font-size: var(--fs-h3);
+}
+
+/* ===========================================Header=========================================== */
+header {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  padding: 2rem 0;
+  align-items: center;
+}
+header > button {
+  border-radius: 1.5rem;
+  min-width: 15rem;
+  text-align: center;
+  padding: 1rem 0;
+  color: #ffffff;
+  font-weight: 700;
+}
+.save-button {
+  background-image: linear-gradient(to right, #ffc700, #ff5c00);
+}
+.download-button {
+  background-color: black;
+}
+#fileName {
+  min-width: 40rem;
+  text-align: center;
+  min-height: 6rem;
+  border-radius: 1.5rem;
+  background-image: linear-gradient(to right, #ffc700, #ff5c00);
+  color: white;
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+.file-name-label {
+  display: block;
+  border: 1px solid black;
+  width: 100%;
+  height: 2.5rem;
+  margin-top: 5rem;
+}
+.resume-window {
+  margin-top: 7.5rem;
+  background-color: #ffffff;
+  width: 40vw;
+  height: calc(35vw / 0.71);
+  margin-bottom: 10rem;
+}
+.main-flex {
+  display: flex;
+  justify-content: space-around;
+}
+.form {
+  background-color: #ffffff;
+  margin-top: 2rem;
+  padding: 1rem 2rem 2.5rem 2rem;
+  border-radius: 1rem;
+}
+.form > div {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.form > div input {
+  background-color: #ededed;
+  border-radius: 1rem;
+  width: 75%;
+  height: 4rem;
+}
+.form > div label {
+  display: inline-block;
+  width: 25%;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.form--personal {
+}
