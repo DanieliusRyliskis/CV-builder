@@ -1,5 +1,11 @@
+import PersonalPreview from "./personal_preview.jsx";
+
 function ResumePreview() {
-  return <div className="resume-window"></div>;
+  return (
+    <div className="resume-window">
+      <PersonalPreview />
+    </div>
+  );
 }
 
 export default ResumePreview;

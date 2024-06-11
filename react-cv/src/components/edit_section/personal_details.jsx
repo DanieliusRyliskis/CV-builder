@@ -1,9 +1,24 @@
-function PersonalDetails() {
+import { useState } from "react";
+// fName callback
+function PersonalDetails({ fName }) {
+  const [fullName, setFullName] = useState("");
+
+  function nameChange(e) {
+    setFullName(e.target.value);
+    fName(e.target.value);
+  }
+
   return (
     <div className="form form--personal">
       <div>
         <label htmlFor="fullName">Full name:</label>
-        <input type="text" id="fullName" />
+        <input
+          type="text"
+          id="fullName"
+          value={fullName}
+          // Triggers every time the value of a input changes
+          onChange={nameChange}
+        />
       </div>
       <div>
         <label htmlFor="email">Email:</label>
@@ -25,6 +40,7 @@ function PersonalDetails() {
         <label htmlFor="linkedin">Linkedin:</label>
         <input type="urlm" id="linkedin" />
       </div>
+      <p>Name: {fullName}</p>
     </div>
   );
 }
