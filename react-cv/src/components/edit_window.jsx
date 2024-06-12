@@ -1,38 +1,48 @@
 import FileNameEdit from "./edit_section/file_name_edit.jsx";
 import PersonalDetails from "./edit_section/personal_details.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function EditWindow() {
-  const [fullName, setFullName] = useState();
+function EditWindow({
+  nameParent,
+  emailParent,
+  phoneParent,
+  locationParent,
+  githubParent,
+  linkedinParent,
+}) {
+  // I won't need no dependecies for useEffect
+  function sendToParent() {
+    nameParent(fullName);
+    emailParent(email);
+    phoneParent(phone);
+    locationParent(location);
+    githubParent(github);
+    linkedinParent(linkedin);
+  }
+  useEffect(sendToParent);
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
+  const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+
   return (
     <div>
-      <FileNameEdit fullNameSend={fullName} />
-      <PersonalDetails fName={setFullName} />
-      <p>{fullName}</p>
+      <FileNameEdit />
+      <PersonalDetails
+        sName={setFullName}
+        sEmail={setEmail}
+        sPhone={setPhone}
+        sLocation={setLocation}
+        sGithub={setGithub}
+        sLinkedin={setLinkedin}
+      />
     </div>
   );
 }
 
 export default EditWindow;
 
-// function Display() {
-//   return <div>{number}</div>;
-// }
-
-// function Dice({ callback }) {
-//   return (
-//     <button onClick={() => callback(Math.floor(Math.random() * 6) + 1)}>
-//       Roll Dice
-//     </button>
-//   );
-// }
-// // Parent component
-// function Parent() {
-//   const [number, setNumber] = React.useState(1);
-//   return (
-//     <div>
-//       <Display number={number} />
-//       <Dice callback={setNumber} />
-//     </div>
-//   );
-// }
+// onChange={() => console.log("updated")}
