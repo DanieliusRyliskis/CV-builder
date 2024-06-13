@@ -2,12 +2,13 @@
   font-size: 62.5%;
   --fs-h1: clamp(2.4rem, 2.24rem + 0.8vw, 3.2rem);
   --fs-h2: clamp(1.8rem, 1.6rem + 1vw, 2.8rem);
-  --fs-h3: clamp(1.4rem, 1.28rem + 0.6vw, 2rem);
-  --fs-h4: clamp(1.2rem, 1.12rem + 0.4vw, 1.6rem);
+  --fs-h3: clamp(1.6rem, 1.44rem + 0.8vw, 2.4rem);
+  --fs-h4: clamp(1.4rem, 1.28rem + 0.6vw, 2rem);
+  --fs-h5: clamp(1.2rem, 1.12rem + 0.4vw, 1.6rem);
 }
 /* ===========================================Text=========================================== */
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: #ededed;
 }
 
@@ -19,7 +20,12 @@ h1 > span {
   color: #ffaf01;
 }
 header > button {
+  font-size: var(--fs-h4);
+}
+.full-name {
   font-size: var(--fs-h3);
+  text-align: center;
+  font-weight: 500;
 }
 
 /* ===========================================Header=========================================== */
@@ -44,6 +50,7 @@ header > button {
 .download-button {
   background-color: black;
 }
+/* ===========================================File name=========================================== */
 .file-name-div {
   margin-top: 7.5rem;
   position: relative;
@@ -63,7 +70,7 @@ header > button {
   min-height: 6rem;
   border-radius: 1.5rem;
   color: white;
-  font-size: var(--fs-h3);
+  font-size: var(--fs-h4);
   font-weight: 700;
 }
 .edit_svg {
@@ -71,6 +78,7 @@ header > button {
   height: 2.4rem;
   flex-grow: 1;
   flex-basis: 2.4rem;
+  cursor: pointer;
 }
 .file-name-label {
   display: block;
@@ -79,6 +87,7 @@ header > button {
   flex-grow: 1;
   flex-basis: 2.4rem;
 }
+/* ===========================================Edit section=========================================== */
 .resume-window {
   margin-top: 7.5rem;
   background-color: #ffffff;
@@ -107,8 +116,20 @@ header > button {
   width: 75%;
   height: 4rem;
   padding: 0 1rem 0 1rem;
-  font-size: var(--fs-h4);
+  font-size: var(--fs-h5);
 }
+.form > .text-area {
+  align-items: start;
+}
+.form > div textarea {
+  background-color: #ededed;
+  border-radius: 1rem;
+  width: 75%;
+  height: 10rem;
+  padding: 0.5rem 1rem;
+  font-size: var(--fs-h5);
+}
+
 .form > div label {
   display: inline-block;
   width: 25%;
@@ -118,5 +139,48 @@ header > button {
   font-size: 1.4rem;
   font-weight: 600;
 }
-.form--personal {
+.button-add {
+  font-size: 1.4rem;
+  color: #ffaf01;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.form--add {
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button--active {
+  display: none;
+}
+#description {
+  overflow-wrap: break-word;
+}
+/* ===========================================Preview section=========================================== */
+.personal-preview > ul {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  margin: 0 auto 2rem auto;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.personal-preview > ul > li {
+  flex-basis: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.personal-preview > ul > li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 15rem;
+}
+.full-name {
+  margin: 3rem 0;
 }

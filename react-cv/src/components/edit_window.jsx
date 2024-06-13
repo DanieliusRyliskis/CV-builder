@@ -1,5 +1,6 @@
 import FileNameEdit from "./edit_section/file_name_edit.jsx";
 import PersonalDetails from "./edit_section/personal_details.jsx";
+import ExperienceDetails from "./edit_section/experience_details.jsx";
 import { useState, useEffect } from "react";
 
 function EditWindow({
@@ -39,6 +40,7 @@ function EditWindow({
         sGithub={setGithub}
         sLinkedin={setLinkedin}
       />
+      <ExperienceDetails />
     </div>
   );
 }
