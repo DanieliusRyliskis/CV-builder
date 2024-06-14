@@ -1,5 +1,5 @@
 import editSvg from "../../assets/edit.svg";
-function FileNameEdit(fullNameSend) {
+function FileNameEdit() {
   return (
     <div className="file-name-div">
       <label className="file-name-label" htmlFor="fileName">

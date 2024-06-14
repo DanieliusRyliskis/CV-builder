@@ -139,7 +139,7 @@ header > button {
   font-size: 1.4rem;
   font-weight: 600;
 }
-.button-add {
+.button-add-section {
   font-size: 1.4rem;
   color: #ffaf01;
   display: flex;
@@ -153,11 +153,79 @@ header > button {
   align-items: center;
   justify-content: center;
 }
-.button--active {
+.button-hidden {
   display: none;
 }
 #description {
   overflow-wrap: break-word;
+}
+.form > .form--hidden {
+  display: none;
+}
+
+.add-section {
+  background-color: #ffffff;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.add-experience {
+  background-color: #ffffff;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+}
+.added-section {
+  background-color: #ededed;
+  padding: 0 1.5rem;
+  height: 4rem;
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.button-add {
+  font-size: 1.4rem;
+  color: #ffaf01;
+  border: 1px dashed #ffaf01;
+  text-align: center;
+  padding: 1rem 4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+.cancel-and-save {
+  display: flex;
+  justify-content: end;
+  align-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+.cancel-and-save > button {
+  font-size: var(--fs-h5);
+  color: white;
+  text-align: center;
+  padding: 0.5rem 0;
+  width: 8rem;
+  border-radius: 1.5rem;
+  cursor: pointer;
+}
+.cancel-and-save > :first-child {
+  background-color: black;
+}
+.cancel-and-save > :last-child {
+  background-image: linear-gradient(to right, #ffc700, #ff5c00);
 }
 /* ===========================================Preview section=========================================== */
 .personal-preview > ul {
