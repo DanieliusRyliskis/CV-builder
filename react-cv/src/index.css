@@ -159,10 +159,6 @@ header > button {
 #description {
   overflow-wrap: break-word;
 }
-.form > .form--hidden {
-  display: none;
-}
-
 .add-section {
   background-color: #ffffff;
   margin-top: 2rem;
