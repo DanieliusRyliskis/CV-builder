@@ -10,6 +10,8 @@ function EditWindow({
   locationParent,
   githubParent,
   linkedinParent,
+  activeParent,
+  passiveParent,
 }) {
   // I won't need no dependecies for useEffect
   function sendToParent() {
@@ -19,6 +21,8 @@ function EditWindow({
     locationParent(location);
     githubParent(github);
     linkedinParent(linkedin);
+    activeParent(activeForm);
+    passiveParent(passiveForm);
   }
   useEffect(sendToParent);
 
@@ -28,6 +32,8 @@ function EditWindow({
   const [location, setLocation] = useState("");
   const [github, setGithub] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [activeForm, setActiveForm] = useState({});
+  const [passiveForm, setPassiveForm] = useState({});
 
   return (
     <div>
@@ -40,7 +46,7 @@ function EditWindow({
         sGithub={setGithub}
         sLinkedin={setLinkedin}
       />
-      <ExperienceDetails />
+      <ExperienceDetails sActive={setActiveForm} sPassive={setPassiveForm} />
     </div>
   );
 }

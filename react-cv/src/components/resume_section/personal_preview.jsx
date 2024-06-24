@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { personalDetailsContext } from "../../App";
+import { previewContext } from "../../App";
 import emailSVG from "../../assets/mail.svg";
 import phoneSVG from "../../assets/phone.svg";
 import locationSVG from "../../assets/location.svg";
@@ -17,7 +17,10 @@ function PersonalPreview() {
     linkedin: linkedinSVG,
   };
 
-  const personalDetails = useContext(personalDetailsContext);
+  const allContext = useContext(previewContext);
+  // delete also removes the attribute from other components
+  // delete personalDetails.activeForm;
+  const { activeForm, passiveForm, ...personalDetails } = allContext;
   const links = Object.entries(personalDetails).map(function ([key, value]) {
     if (value !== "" && !["fullName", "github", "linkedin"].includes(key)) {
       return (

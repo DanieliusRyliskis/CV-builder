@@ -4,7 +4,7 @@ import ResumePreview from "./components/resume_section/resume_preview";
 import EditWindow from "./components/edit_window";
 import { useState, createContext } from "react";
 
-export const personalDetailsContext = createContext();
+export const previewContext = createContext();
 
 function App() {
   const [fullName, setFullName] = useState("");
@@ -13,6 +13,8 @@ function App() {
   const [location, setLocation] = useState("");
   const [github, setGithub] = useState("");
   const [linkedin, setLinkedin] = useState("");
+  const [activeForm, setActiveForm] = useState({});
+  const [passiveForm, setPassiveForm] = useState({});
 
   return (
     <>
@@ -25,12 +27,23 @@ function App() {
           locationParent={setLocation}
           githubParent={setGithub}
           linkedinParent={setLinkedin}
+          activeParent={setActiveForm}
+          passiveParent={setPassiveForm}
         />
-        <personalDetailsContext.Provider
-          value={{ fullName, email, phone, location, github, linkedin }}
+        <previewContext.Provider
+          value={{
+            fullName,
+            email,
+            phone,
+            location,
+            github,
+            linkedin,
+            activeForm,
+            passiveForm,
+          }}
         >
           <ResumePreview />
-        </personalDetailsContext.Provider>
+        </previewContext.Provider>
       </div>
     </>
   );

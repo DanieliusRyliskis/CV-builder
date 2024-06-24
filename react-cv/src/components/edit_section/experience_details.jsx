@@ -1,16 +1,22 @@
 import AddSVG from "../../assets/add.svg";
-import ExperienceForm from "./experience_form";
 import React, { useState, useEffect } from "react";
 
-function ExperienceDetails() {
-  const [form, setForm] = useState({
+function ExperienceDetails({ sActive, sPassive }) {
+  const [activeForm, setActiveForm] = useState({
+    // id: nextKey,
     company: "",
     role: "",
     description: "",
   });
+  const [passiveForm, setPassiveForm] = useState({});
   const [company, setCompany] = useState("");
   const [role, setRole] = useState([]);
   const [description, setDescription] = useState("");
+  // const [nextKey, setNextKey] = useState(0);
+
+  useEffect(() => {
+    sActive(activeForm);
+  }, [activeForm]);
 
   const revealExperience = function (e) {
     e.target.classList.add("hidden");
@@ -24,18 +30,21 @@ function ExperienceDetails() {
   const changeCompany = function (e) {
     setCompany(e.target.value);
     // Parenthesis lets you write an object within an arrow function, otherwise it will think that you're trying to write a multi-line statement
-    setForm((f) => ({ ...f, company: e.target.value }));
-    console.log(form);
+    setActiveForm((a) => ({ ...a, company: e.target.value }));
   };
   const changeRole = function (e) {
     setRole(e.target.value);
+    setActiveForm((a) => ({ ...a, role: e.target.value }));
   };
   const changeDescription = function (e) {
     setDescription(e.target.value);
+    setActiveForm((a) => ({ ...a, description: e.target.value }));
   };
   const cancel = function () {};
   const save = function () {
-    console.log(form);
+    setPassiveForm((p) => ({ ...p, activeForm }));
+    setActiveForm((a) => ({ role: "", company: "", description: "" }));
+    // setNextKey(nextKey + 1);
   };
 
   return (
