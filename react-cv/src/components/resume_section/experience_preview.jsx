@@ -1,20 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { previewContext } from "../../App";
 
 function ExperiencePreview() {
   const allContext = useContext(previewContext);
   const { activeForm, passiveForm, ...personalDetails } = allContext;
-  const printing = function () {
-    console.log(activeForm);
-  };
+
+  const activeList = Object.entries(activeForm).map(function ([key, value]) {
+    if (value !== "") {
+      return <li key={key}>{value}</li>;
+    }
+  });
+  const passiveList = passiveForm.map((obj, index) => console.log(obj));
+  useEffect(() => {}, [passiveForm]);
 
   return (
     <>
-      <div></div>
-      <div>
-        <p>{activeForm.company}</p>
-        <p>{activeForm.role}</p>
-        <p>{activeForm.description}</p>
+      <div>{/* <ul>{passiveList}</ul> */}</div>
+      <div className="active_form">
+        <ul>{activeList}</ul>
       </div>
     </>
   );

@@ -14,7 +14,7 @@ function App() {
   const [github, setGithub] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [activeForm, setActiveForm] = useState({});
-  const [passiveForm, setPassiveForm] = useState({});
+  const [passiveForm, setPassiveForm] = useState([]);
 
   return (
     <>

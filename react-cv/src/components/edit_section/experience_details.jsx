@@ -8,7 +8,7 @@ function ExperienceDetails({ sActive, sPassive }) {
     role: "",
     description: "",
   });
-  const [passiveForm, setPassiveForm] = useState({});
+  const [passiveForm, setPassiveForm] = useState([]);
   const [company, setCompany] = useState("");
   const [role, setRole] = useState([]);
   const [description, setDescription] = useState("");
@@ -16,6 +16,7 @@ function ExperienceDetails({ sActive, sPassive }) {
 
   useEffect(() => {
     sActive(activeForm);
+    sPassive(passiveForm);
   }, [activeForm]);
 
   const revealExperience = function (e) {
@@ -42,8 +43,8 @@ function ExperienceDetails({ sActive, sPassive }) {
   };
   const cancel = function () {};
   const save = function () {
-    setPassiveForm((p) => ({ ...p, activeForm }));
-    setActiveForm((a) => ({ role: "", company: "", description: "" }));
+    setPassiveForm((p) => [...p, activeForm]);
+    setActiveForm({ role: "", company: "", description: "" });
     // setNextKey(nextKey + 1);
   };
 
