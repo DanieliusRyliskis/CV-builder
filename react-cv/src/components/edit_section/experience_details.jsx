@@ -41,12 +41,28 @@ function ExperienceDetails({ sActive, sPassive }) {
     setDescription(e.target.value);
     setActiveForm((a) => ({ ...a, description: e.target.value }));
   };
-  const cancel = function () {};
+  const cancel = function () {
+    setActiveForm({ role: "", company: "", description: "" });
+    setCompany("");
+    setRole("");
+    setDescription("");
+    document.querySelector(".form--experience").classList.add("hidden");
+    document.querySelector(".add-experience").classList.remove("hidden");
+  };
   const save = function () {
     setPassiveForm((p) => [...p, activeForm]);
     setActiveForm({ role: "", company: "", description: "" });
+    setCompany("");
+    setRole("");
+    setDescription("");
+    document.querySelector(".form--experience").classList.add("hidden");
+    document.querySelector(".add-experience").classList.remove("hidden");
     // setNextKey(nextKey + 1);
   };
+  const editExperience = function () {
+    console.log(passiveForm);
+  };
+  // Handle key presses
 
   return (
     <React.Fragment>
@@ -56,7 +72,13 @@ function ExperienceDetails({ sActive, sPassive }) {
         </button>
       </div>
       <div className="add-experience hidden">
-        <div className="added-section">Company</div>
+        {/* Needs dynamic rendering */}
+        {passiveForm.map((obj, index) => (
+          <div key={index} className="added-section" onClick={editExperience}>
+            {obj.company}
+          </div>
+        ))}
+
         <div className="button-wrapper">
           <button className="button-add" onClick={revealExperienceField}>
             ADD

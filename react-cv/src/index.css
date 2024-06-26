@@ -27,6 +27,12 @@ header > button {
   text-align: center;
   font-weight: 500;
 }
+h5 {
+  font-size: var(--fs-h5);
+}
+.bolded {
+  font-weight: bold;
+}
 
 /* ===========================================Header=========================================== */
 header {
@@ -182,6 +188,7 @@ header > button {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 .button-add {
   font-size: 1.4rem;
@@ -247,4 +254,9 @@ header > button {
 }
 .full-name {
   margin: 3rem 0;
+}
+hr {
+  border: none;
+  height: 2px;
+  background-color: black;
 }
