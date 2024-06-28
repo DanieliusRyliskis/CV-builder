@@ -14,31 +14,27 @@ function ExperienceDetails({ sActive, sPassive }) {
   const [description, setDescription] = useState("");
   // const [nextKey, setNextKey] = useState(0);
 
+  const handleFormKey = function (e) {
+    if (
+      e.key === "Enter" &&
+      !document.querySelector(".form--experience").classList.contains("hidden")
+    ) {
+      debugger;
+      save();
+    } else if (
+      e.key === "Escape" &&
+      !document.querySelector(".form--experience").classList.contains("hidden")
+    ) {
+      cancel();
+    }
+  };
+
   useEffect(() => {
     sActive(activeForm);
     sPassive(passiveForm);
   }, [activeForm]);
 
   useEffect(() => {
-    const handleFormKey = function (e) {
-      if (
-        e.key === "Enter" &&
-        !document
-          .querySelector(".form--experience")
-          .classList.contains("hidden")
-      ) {
-        debugger;
-        save();
-      } else if (
-        e.key === "Escape" &&
-        !document
-          .querySelector(".form--experience")
-          .classList.contains("hidden")
-      ) {
-        cancel();
-      }
-    };
-
     window.addEventListener("keydown", handleFormKey);
 
     return () => window.removeEventListener("keydown", handleFormKey);
