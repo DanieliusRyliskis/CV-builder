@@ -19,6 +19,31 @@ function ExperienceDetails({ sActive, sPassive }) {
     sPassive(passiveForm);
   }, [activeForm]);
 
+  useEffect(() => {
+    const handleFormKey = function (e) {
+      if (
+        e.key === "Enter" &&
+        !document
+          .querySelector(".form--experience")
+          .classList.contains("hidden")
+      ) {
+        debugger;
+        save();
+      } else if (
+        e.key === "Escape" &&
+        !document
+          .querySelector(".form--experience")
+          .classList.contains("hidden")
+      ) {
+        cancel();
+      }
+    };
+
+    window.addEventListener("keydown", handleFormKey);
+
+    return () => window.removeEventListener("keydown", handleFormKey);
+  }, [activeForm]);
+
   const revealExperience = function (e) {
     e.target.classList.add("hidden");
     document.querySelector(".add-section").classList.add("hidden");
