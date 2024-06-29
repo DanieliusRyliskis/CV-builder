@@ -209,6 +209,7 @@ header > button {
   display: none;
 }
 .cancel-and-save {
+  position: relative;
   display: flex;
   justify-content: end;
   align-content: center;
@@ -224,11 +225,18 @@ header > button {
   border-radius: 1.5rem;
   cursor: pointer;
 }
-.cancel-and-save > :first-child {
+.cancel-and-save > :nth-child(2) {
   background-color: black;
 }
 .cancel-and-save > :last-child {
   background-image: linear-gradient(to right, #ffc700, #ff5c00);
+}
+.button-delete {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  left: 0;
+  background-color: red;
 }
 /* ===========================================Preview section=========================================== */
 .personal-preview > ul {

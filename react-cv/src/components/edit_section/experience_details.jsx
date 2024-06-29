@@ -2,8 +2,9 @@ import AddSVG from "../../assets/add.svg";
 import React, { useState, useEffect } from "react";
 
 function ExperienceDetails({ sActive, sPassive }) {
+  const [key, setKey] = useState(0);
   const [activeForm, setActiveForm] = useState({
-    // id: nextKey,
+    id: key,
     company: "",
     role: "",
     description: "",
@@ -12,29 +13,36 @@ function ExperienceDetails({ sActive, sPassive }) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState([]);
   const [description, setDescription] = useState("");
-  // const [nextKey, setNextKey] = useState(0);
 
-  const handleFormKey = function (e) {
-    if (
-      e.key === "Enter" &&
-      !document.querySelector(".form--experience").classList.contains("hidden")
-    ) {
-      debugger;
-      save();
-    } else if (
-      e.key === "Escape" &&
-      !document.querySelector(".form--experience").classList.contains("hidden")
-    ) {
-      cancel();
-    }
-  };
+  useEffect(() => {
+    setActiveForm((a) => ({ ...a, id: key }));
+  }, [key]);
 
   useEffect(() => {
     sActive(activeForm);
     sPassive(passiveForm);
   }, [activeForm]);
 
+  // Need activeForm in a dependency array, otherwise i'll endup in a stale closure
   useEffect(() => {
+    const handleFormKey = function (e) {
+      if (
+        e.key === "Enter" &&
+        !document
+          .querySelector(".form--experience")
+          .classList.contains("hidden")
+      ) {
+        save();
+      } else if (
+        e.key === "Escape" &&
+        !document
+          .querySelector(".form--experience")
+          .classList.contains("hidden")
+      ) {
+        cancel();
+      }
+    };
+
     window.addEventListener("keydown", handleFormKey);
 
     return () => window.removeEventListener("keydown", handleFormKey);
@@ -63,7 +71,7 @@ function ExperienceDetails({ sActive, sPassive }) {
     setActiveForm((a) => ({ ...a, description: e.target.value }));
   };
   const cancel = function () {
-    setActiveForm({ role: "", company: "", description: "" });
+    setActiveForm({ id: key, role: "", company: "", description: "" });
     setCompany("");
     setRole("");
     setDescription("");
@@ -71,19 +79,22 @@ function ExperienceDetails({ sActive, sPassive }) {
     document.querySelector(".add-experience").classList.remove("hidden");
   };
   const save = function () {
+    setKey((k) => k + 1);
     setPassiveForm((p) => [...p, activeForm]);
-    setActiveForm({ role: "", company: "", description: "" });
+    setActiveForm({ id: key, company: "", role: "", description: "" });
     setCompany("");
     setRole("");
     setDescription("");
     document.querySelector(".form--experience").classList.add("hidden");
     document.querySelector(".add-experience").classList.remove("hidden");
-    // setNextKey(nextKey + 1);
   };
-  const editExperience = function () {
+  const editExperience = function (e) {
     console.log(passiveForm);
+    document.querySelector(".add-experience").classList.add("hidden");
+    document.querySelector(".form--experience").classList.remove("hidden");
+    document.querySelector(".button-delete").classList.remove("hidden");
   };
-  // Handle key presses
+  const deleteForm = function () {};
 
   return (
     <React.Fragment>
@@ -130,6 +141,9 @@ function ExperienceDetails({ sActive, sPassive }) {
           ></textarea>
         </div>
         <div className="cancel-and-save">
+          <button onClick={deleteForm} className="button-delete hidden">
+            Delete
+          </button>
           <button onClick={cancel}>Cancel</button>
           <button onClick={save}>Save</button>
         </div>
