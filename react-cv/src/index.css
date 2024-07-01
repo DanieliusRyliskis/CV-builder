@@ -52,11 +52,10 @@ header > button {
   font-weight: 700;
 }
 .save-button {
-  display: none;
   background-image: linear-gradient(to right, #ffc700, #ff5c00);
+  cursor: pointer;
 }
 .download-button {
-  display: none;
   background-color: black;
   cursor: pointer;
 }

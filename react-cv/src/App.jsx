@@ -15,10 +15,11 @@ function App() {
   const [linkedin, setLinkedin] = useState("");
   const [activeForm, setActiveForm] = useState({});
   const [passiveForm, setPassiveForm] = useState([]);
+  const [shouldDownload, setShouldDownload] = useState([]);
 
   return (
     <>
-      <Header />
+      <Header shouldDownloadParent={setShouldDownload} />
       <div className="main-flex">
         <EditWindow
           nameParent={setFullName}
@@ -42,7 +43,7 @@ function App() {
             passiveForm,
           }}
         >
-          <ResumePreview />
+          <ResumePreview download={shouldDownload} />
         </previewContext.Provider>
       </div>
     </>
