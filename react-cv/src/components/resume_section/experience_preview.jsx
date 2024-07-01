@@ -8,10 +8,10 @@ function ExperiencePreview() {
   const passiveList = passiveForm.map((obj, index) => {
     return (
       <li key={index}>
-        <div>
-          <h5 className="bolded">{obj.company}</h5>
-          <h5>{obj.role}</h5>
-          <h5>{obj.description}</h5>
+        <div className="form_element">
+          <h5>{obj.company}</h5>
+          <h6>{obj.role}</h6>
+          <h6>{obj.description}</h6>
         </div>
       </li>
     );
@@ -20,19 +20,19 @@ function ExperiencePreview() {
 
   return (
     <>
-      <div className="Experience">
+      <div className="experience">
         <h5>Experience</h5>
         <hr />
-        <div>
+        <div className="passive_form">
           <ul>{passiveList}</ul>
         </div>
         <div className="active_form">
           <ul>
             <li>
-              <div>
-                <h5 className="bolded">{activeForm.company}</h5>
-                <h5>{activeForm.role}</h5>
-                <h5>{activeForm.description}</h5>
+              <div className="form_element">
+                <h5>{activeForm.company}</h5>
+                <h6>{activeForm.role}</h6>
+                <h6>{activeForm.description}</h6>
               </div>
             </li>
           </ul>

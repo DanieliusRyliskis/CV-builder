@@ -26,7 +26,7 @@ function PersonalPreview() {
       return (
         <li key={key}>
           <img src={icons[key]} alt={`${key} icon`} />
-          {value}
+          <h6>{value}</h6>
         </li>
       );
     } else if (value !== "" && ["github", "linkedin"].includes(key)) {
@@ -34,7 +34,7 @@ function PersonalPreview() {
         <li key={key}>
           <a href={value}>
             <img src={icons[key]} alt={`${key} icon`} />
-            {value}
+            <h6>{value}</h6>
           </a>
         </li>
       );

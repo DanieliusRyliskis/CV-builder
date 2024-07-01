@@ -5,6 +5,7 @@
   --fs-h3: clamp(1.6rem, 1.44rem + 0.8vw, 2.4rem);
   --fs-h4: clamp(1.4rem, 1.28rem + 0.6vw, 2rem);
   --fs-h5: clamp(1.2rem, 1.12rem + 0.4vw, 1.6rem);
+  --fs-h6: clamp(0.8rem, 0.72rem + 0.4vw, 1.2rem);
 }
 /* ===========================================Text=========================================== */
 body {
@@ -30,8 +31,8 @@ header > button {
 h5 {
   font-size: var(--fs-h5);
 }
-.bolded {
-  font-weight: bold;
+h6 {
+  font-size: var(--fs-h6);
 }
 
 /* ===========================================Header=========================================== */
@@ -51,12 +52,20 @@ header > button {
   font-weight: 700;
 }
 .save-button {
+  display: none;
   background-image: linear-gradient(to right, #ffc700, #ff5c00);
 }
 .download-button {
+  display: none;
   background-color: black;
+  cursor: pointer;
 }
 /* ===========================================File name=========================================== */
+.file-name-div input:-webkit-autofill {
+  -webkit-text-fill-color: white;
+  -webkit-background-clip: text;
+}
+
 .file-name-div {
   margin-top: 7.5rem;
   position: relative;
@@ -80,8 +89,8 @@ header > button {
   font-weight: 700;
 }
 .edit_svg {
-  width: 2.4rem;
-  height: 2.4rem;
+  width: 3rem;
+  height: 3rem;
   flex-grow: 1;
   flex-basis: 2.4rem;
   cursor: pointer;
@@ -94,16 +103,16 @@ header > button {
   flex-basis: 2.4rem;
 }
 /* ===========================================Edit section=========================================== */
-.resume-window {
-  margin-top: 7.5rem;
-  background-color: #ffffff;
-  width: 40vw;
-  height: calc(35vw / 0.71);
-  margin-bottom: 10rem;
-}
 .main-flex {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+}
+.main-flex > :first-child {
+  margin: 0 3rem;
+}
+.main-flex > :last-child {
+  margin: 7.5rem 3rem 10rem 3rem;
 }
 .form {
   background-color: #ffffff;
@@ -225,10 +234,11 @@ header > button {
   border-radius: 1.5rem;
   cursor: pointer;
 }
-.cancel-and-save > :nth-child(2) {
+.button-cancel {
   background-color: black;
 }
-.cancel-and-save > :last-child {
+.button-save,
+.button-update {
   background-image: linear-gradient(to right, #ffc700, #ff5c00);
 }
 .button-delete {
@@ -239,12 +249,17 @@ header > button {
   background-color: red;
 }
 /* ===========================================Preview section=========================================== */
+.resume-window {
+  background-color: #ffffff;
+  width: max(40vw, 50rem);
+  height: max(calc(35vw / 0.71), 70.5rem);
+}
 .personal-preview > ul {
   display: flex;
   justify-content: center;
   align-content: center;
   width: 80%;
-  margin: 0 auto 2rem auto;
+  margin: 0 auto 4rem auto;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
@@ -253,6 +268,7 @@ header > button {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 2;
 }
 .personal-preview > ul > li a {
   display: flex;
@@ -263,8 +279,75 @@ header > button {
 .full-name {
   margin: 3rem 0;
 }
+.experience {
+  width: 90%;
+  margin: 0 auto;
+}
+.experience > h5 {
+  font-weight: bold;
+}
 hr {
   border: none;
   height: 2px;
   background-color: black;
 }
+.passive_form,
+.active_form {
+  margin-top: 0.75rem;
+}
+.form_element > :first-child {
+  font-weight: bold;
+}
+.form_element > :nth-child(2) {
+  font-weight: 700;
+}
+/* ===========================================Media queries=========================================== */
+@media (max-width: 34.3em) {
+  /* Preview window */
+  .main-flex > :first-child {
+    margin: 0 1rem;
+  }
+  .main-flex > :last-child {
+    margin: 7.5rem 1rem 10rem 1rem;
+  }
+  .resume-window {
+    width: max(40vw, 40rem);
+    height: max(calc(35vw / 0.71), 56.4rem);
+  }
+}
+
+@media (max-width: 26.8em) {
+  .file-name-div {
+    min-width: 35rem;
+  }
+  .resume-window {
+    width: max(40vw, 35rem);
+    height: max(calc(35vw / 0.71), 49.3rem);
+  }
+  .full-name {
+    margin: 2rem;
+  }
+  .personal-preview > ul {
+    margin: 0 auto 2rem auto;
+  }
+}
+@media (max-width: 23.15em) {
+  .file-name-div {
+    min-width: 30rem;
+  }
+  .resume-window {
+    width: max(40vw, 30rem);
+    height: max(calc(35vw / 0.71), 42.25rem);
+  }
+  .main-flex > :last-child {
+    margin: 3.5rem 1rem 5rem 1rem;
+  }
+}
+
+/* For mobile screens */
+/* @media (max-width: ______) {
+  .resume-window {
+    width: max(40vw, 35rem);
+    height: max(calc(35vw / 0.71), 40.9rem);
+  }
+} */

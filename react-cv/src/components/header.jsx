@@ -5,7 +5,9 @@ function Header() {
       <h1>
         <span>CV</span>-Builder
       </h1>
-      <button className="download-button">Download</button>
+      <button className="download-button" onClick={downloadPDF}>
+        Download
+      </button>
     </header>
   );
 }

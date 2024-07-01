@@ -1,10 +1,8 @@
 import AddSVG from "../../assets/add.svg";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 function ExperienceDetails({ sActive, sPassive }) {
-  const [key, setKey] = useState(0);
   const [activeForm, setActiveForm] = useState({
-    id: key,
     company: "",
     role: "",
     description: "",
@@ -13,31 +11,30 @@ function ExperienceDetails({ sActive, sPassive }) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState([]);
   const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    setActiveForm((a) => ({ ...a, id: key }));
-  }, [key]);
+  const [openedForm, setOpenedForm] = useState(0);
 
   useEffect(() => {
     sActive(activeForm);
     sPassive(passiveForm);
-  }, [activeForm]);
+  }, [activeForm, passiveForm]);
 
   // Need activeForm in a dependency array, otherwise i'll endup in a stale closure
   useEffect(() => {
     const handleFormKey = function (e) {
+      // !!! Needs a fix because there is now .form--submit and .form--update
       if (
         e.key === "Enter" &&
-        !document
-          .querySelector(".form--experience")
-          .classList.contains("hidden")
+        !document.querySelector(".form--submit").classList.contains("hidden")
       ) {
         save();
       } else if (
+        e.key === "Enter" &&
+        !document.querySelector(".form--update").classList.contains("hidden")
+      ) {
+        update();
+      } else if (
         e.key === "Escape" &&
-        !document
-          .querySelector(".form--experience")
-          .classList.contains("hidden")
+        !document.querySelector(".form--submit").classList.contains("hidden")
       ) {
         cancel();
       }
@@ -55,7 +52,7 @@ function ExperienceDetails({ sActive, sPassive }) {
   };
   const revealExperienceField = function (e) {
     document.querySelector(".add-experience").classList.add("hidden");
-    document.querySelector(".form--experience").classList.remove("hidden");
+    document.querySelector(".form--submit").classList.remove("hidden");
   };
   const changeCompany = function (e) {
     setCompany(e.target.value);
@@ -71,30 +68,71 @@ function ExperienceDetails({ sActive, sPassive }) {
     setActiveForm((a) => ({ ...a, description: e.target.value }));
   };
   const cancel = function () {
-    setActiveForm({ id: key, role: "", company: "", description: "" });
+    setActiveForm({ company: "", role: "", description: "" });
     setCompany("");
     setRole("");
     setDescription("");
-    document.querySelector(".form--experience").classList.add("hidden");
+    document.querySelector(".form--submit").classList.add("hidden");
     document.querySelector(".add-experience").classList.remove("hidden");
   };
   const save = function () {
-    setKey((k) => k + 1);
     setPassiveForm((p) => [...p, activeForm]);
-    setActiveForm({ id: key, company: "", role: "", description: "" });
+    setActiveForm({ company: "", role: "", description: "" });
     setCompany("");
     setRole("");
     setDescription("");
-    document.querySelector(".form--experience").classList.add("hidden");
+    document.querySelector(".form--submit").classList.add("hidden");
     document.querySelector(".add-experience").classList.remove("hidden");
   };
   const editExperience = function (e) {
-    console.log(passiveForm);
+    setOpenedForm(e.target.dataset.key);
+    setCompany(passiveForm[e.target.dataset.key].company);
+    setRole(passiveForm[e.target.dataset.key].role);
+    setDescription(passiveForm[e.target.dataset.key].description);
     document.querySelector(".add-experience").classList.add("hidden");
-    document.querySelector(".form--experience").classList.remove("hidden");
-    document.querySelector(".button-delete").classList.remove("hidden");
+    document.querySelector(".form--update").classList.remove("hidden");
   };
-  const deleteForm = function () {};
+  const updateCompany = function (e) {
+    const copyPassive = [...passiveForm];
+    copyPassive[openedForm].company = e.target.value;
+    setPassiveForm(copyPassive);
+    setCompany(e.target.value);
+  };
+  const updateRole = function (e) {
+    const copyPassive = [...passiveForm];
+    copyPassive[openedForm].role = e.target.value;
+    setPassiveForm(copyPassive);
+
+    setRole(e.target.value);
+  };
+  const updateDescription = function (e) {
+    const copyPassive = [...passiveForm];
+    copyPassive[openedForm].description = e.target.value;
+    setPassiveForm(copyPassive);
+    setDescription(e.target.value);
+  };
+  const deleteForm = function () {
+    const copyPassive = [...passiveForm];
+    copyPassive.splice(openedForm, 1);
+    setPassiveForm(copyPassive);
+    setCompany("");
+    setRole("");
+    setDescription("");
+    document.querySelector(".form--update").classList.add("hidden");
+    document.querySelector(".add-experience").classList.remove("hidden");
+  };
+  const update = function () {
+    setCompany("");
+    setRole("");
+    setDescription("");
+    document.querySelector(".form--update").classList.add("hidden");
+    document.querySelector(".add-experience").classList.remove("hidden");
+  };
+
+  const cancelUpdate = function () {
+    document.querySelector(".form--update").classList.add("hidden");
+    document.querySelector(".add-experience").classList.remove("hidden");
+  };
 
   return (
     <React.Fragment>
@@ -106,7 +144,12 @@ function ExperienceDetails({ sActive, sPassive }) {
       <div className="add-experience hidden">
         {/* Needs dynamic rendering */}
         {passiveForm.map((obj, index) => (
-          <div key={index} className="added-section" onClick={editExperience}>
+          <div
+            key={index}
+            data-key={index}
+            className="added-section"
+            onClick={editExperience}
+          >
             {obj.company}
           </div>
         ))}
@@ -117,7 +160,7 @@ function ExperienceDetails({ sActive, sPassive }) {
           </button>
         </div>
       </div>
-      <div className="form form--experience hidden">
+      <div className="form form--submit hidden">
         <div>
           <label htmlFor="company">Company:</label>
           <input
@@ -141,11 +184,53 @@ function ExperienceDetails({ sActive, sPassive }) {
           ></textarea>
         </div>
         <div className="cancel-and-save">
-          <button onClick={deleteForm} className="button-delete hidden">
+          <button onClick={cancel} className="button-cancel">
+            Cancel
+          </button>
+          <button onClick={save} className="button-save">
+            {/* change the name to save later */}
+            Save
+          </button>
+        </div>
+      </div>
+      <div className="form form--update hidden">
+        <div>
+          <label htmlFor="company">Company:</label>
+          <input
+            type="text"
+            id="company--update"
+            value={company}
+            onChange={updateCompany}
+          />
+        </div>
+        <div>
+          <label htmlFor="role">Role:</label>
+          <input
+            type="text"
+            id="role--update"
+            value={role}
+            onChange={updateRole}
+          />
+        </div>
+        <div className="text-area">
+          <label htmlFor="description">Description:</label>
+          <textarea
+            name="description"
+            id="description--update"
+            value={description}
+            onChange={updateDescription}
+          ></textarea>
+        </div>
+        <div className="cancel-and-save">
+          <button onClick={deleteForm} className="button-delete">
             Delete
           </button>
-          <button onClick={cancel}>Cancel</button>
-          <button onClick={save}>Save</button>
+          <button onClick={cancelUpdate} className="button-cancel">
+            Cancel
+          </button>
+          <button onClick={update} className="button-update">
+            Save
+          </button>
         </div>
       </div>
     </React.Fragment>
