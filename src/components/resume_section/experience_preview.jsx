@@ -3,7 +3,13 @@ import { previewContext } from "../../App";
 
 function ExperiencePreview() {
   const allContext = useContext(previewContext);
-  const { activeForm, passiveForm, ...personalDetails } = allContext;
+  const { activeForm, passiveForm, showExp, ...personalDetails } = allContext;
+
+  useEffect(() => {
+    if (showExp.length !== 0 && showExp !== "") {
+      document.querySelector(".experience-title").classList.remove("hidden");
+    }
+  }, [showExp]);
 
   const passiveList = passiveForm.map((obj, index) => {
     return (
@@ -21,8 +27,10 @@ function ExperiencePreview() {
   return (
     <>
       <div className="experience">
-        <h5>Experience</h5>
-        <hr />
+        <div className="experience-title hidden">
+          <h5>Experience</h5>
+          <hr />
+        </div>
         <div className="passive_form">
           <ul>{passiveList}</ul>
         </div>

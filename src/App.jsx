@@ -16,6 +16,7 @@ function App() {
   const [activeForm, setActiveForm] = useState({});
   const [passiveForm, setPassiveForm] = useState([]);
   const [shouldDownload, setShouldDownload] = useState([]);
+  const [showExp, setShowExp] = useState([]);
 
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
           linkedinParent={setLinkedin}
           activeParent={setActiveForm}
           passiveParent={setPassiveForm}
+          showExpParent={setShowExp}
         />
         <previewContext.Provider
           value={{
@@ -41,6 +43,7 @@ function App() {
             linkedin,
             activeForm,
             passiveForm,
+            showExp,
           }}
         >
           <ResumePreview download={shouldDownload} />

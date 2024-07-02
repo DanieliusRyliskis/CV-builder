@@ -1,7 +1,7 @@
 import AddSVG from "../../assets/add.svg";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
-function ExperienceDetails({ sActive, sPassive }) {
+function ExperienceDetails({ sActive, sPassive, sShowExp }) {
   const [activeForm, setActiveForm] = useState({
     company: "",
     role: "",
@@ -12,6 +12,11 @@ function ExperienceDetails({ sActive, sPassive }) {
   const [role, setRole] = useState([]);
   const [description, setDescription] = useState("");
   const [openedForm, setOpenedForm] = useState(0);
+  const [signal, setSignal] = useState([]);
+
+  useEffect(() => {
+    sShowExp(signal);
+  }, [signal]);
 
   useEffect(() => {
     sActive(activeForm);
@@ -47,6 +52,7 @@ function ExperienceDetails({ sActive, sPassive }) {
 
   const revealExperience = function (e) {
     e.target.classList.add("hidden");
+    setSignal((s) => [...s, "show"]);
     document.querySelector(".add-section").classList.add("hidden");
     document.querySelector(".add-experience").classList.remove("hidden");
   };
@@ -188,7 +194,6 @@ function ExperienceDetails({ sActive, sPassive }) {
             Cancel
           </button>
           <button onClick={save} className="button-save">
-            {/* change the name to save later */}
             Save
           </button>
         </div>
