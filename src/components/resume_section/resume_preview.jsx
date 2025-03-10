@@ -5,7 +5,6 @@ import { useEffect } from "react";
 function ResumePreview(props) {
   useEffect(() => {
     if (props.download.length !== 0 && props.download !== "") {
-      console.log("download");
       const printContent = document.querySelector(".resume-window");
       html2pdf(printContent);
     }

@@ -6,8 +6,6 @@ import locationSVG from "../../assets/location.svg";
 import githubSVG from "../../assets/github.svg";
 import linkedinSVG from "../../assets/linkedin.svg";
 
-// eval(`${key}SVG`)
-
 function PersonalPreview() {
   const icons = {
     email: emailSVG,
@@ -18,8 +16,6 @@ function PersonalPreview() {
   };
 
   const allContext = useContext(previewContext);
-  // delete also removes the attribute from other components
-  // delete personalDetails.activeForm;
   const { activeForm, passiveForm, showExp, ...personalDetails } = allContext;
   const links = Object.entries(personalDetails).map(function ([key, value]) {
     if (value !== "" && !["fullName", "github", "linkedin"].includes(key)) {
@@ -52,29 +48,3 @@ function PersonalPreview() {
 
 export default PersonalPreview;
 
-// [
-//   [
-//       "fullName",
-//       "asdaasdas"
-//   ],
-//   [
-//       "email",
-//       "asdas"
-//   ],
-//   [
-//       "phone",
-//       "asdas"
-//   ],
-//   [
-//       "location",
-//       "asdasd"
-//   ],
-//   [
-//       "github",
-//       "asdas"
-//   ],
-//   [
-//       "linkedin",
-//       "asda"
-//   ]
-// ]

@@ -10,13 +10,10 @@ function Header({ shouldDownloadParent }) {
   const downloadPDF = function () {
     setSignal((s) => [...s, "update"]);
   };
-  const notWorking = function () {
-    alert("To be released");
-  };
 
   return (
     <header>
-      <button className="save-button" onClick={notWorking}>
+      <button className="save-button">
         Save
       </button>
       <h1>

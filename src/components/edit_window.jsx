@@ -14,7 +14,6 @@ function EditWindow({
   passiveParent,
   showExpParent,
 }) {
-  // I won't need no dependecies for useEffect
   function sendToParent() {
     nameParent(fullName);
     emailParent(email);
@@ -60,4 +59,3 @@ function EditWindow({
 
 export default EditWindow;
 
-// onChange={() => console.log("updated")}
